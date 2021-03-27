@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Main</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    <section id="main">
+        <div class="content">
+            <div class="nav">
+                <div class="navitem">
+                    <a class="logo"><img src="../static/assets/logo.png" width="42px"></a>
+                    <a class="active" href="/">Home</a>
+                    <a href="adding">Add number</a>
+                    <a href="#footer">Contact</a>
+                    <a class="btn info"><img class="info-img" src="../static/assets/help.svg" width="15px">Infos</a>
+                </div>
+            </div>
+            <div class="title">
+                <h1>Web Phonebook</h1>
+                <h2>All phones number, ones website</h2>
+            </div>
+            <div class="formulaire">
+                <form action="http://localhost:5000/" method="post">
+                    <label id="labels" for="searchinput">Names<div class="line"></div></label><input id='searchinput' placeholder="Search for names" type="text" name="search" /><input type="image" src="/static/assets/loup.png" width="23px" value="" id="sub" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="card">
+        {% if data is defined %} 
+            {% for item in data%}
+                <div class="cards">
+                    <div class="card-content">
+                        <div class="name">
+                            <p>Nom</p> <div class="line-card"></div> <p>{{item[0]}}</p>
+                        </div>
+                        <div class="number">
+                            <p>Numéro</p> <div class="line-card"></div> <p>{{item[1]}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        {% endif %}
+
+        {% if error is defined %}
+            <div class="cards error">
+                <div class="card-content card-error">
+                    <div class="name">
+                        <p>Erreur</p><div class="line-card"></div><p class="err">{{error}}</p>
+                    </div> 
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+    {% if error or data is defined %}
+    <div class="container">
+        <hr>
+    </div>
+    {% endif %}
+
+    <section id="info-number">
+        <div class="title-info">
+            <h1>Plus de <strong>{{total}}</strong> numéros enregistrer !</h1>
+            <h2>Alors pourquoi ne pas <span id="add"><a href="adding">ajoutez</a></span> le votre?</h2>
+        </div>
+    </section>
+
+    <section id="footer">
+        <div class="footer-container">
+            <img class="footer-img" src="../static/assets/logo.png" width="42px">
+            <p>© Web Phone Book</p>
+            <p>Created by <a href="https://github.com/NotBlue-Dev">Not<span>Blue</span></a></p>
+            <p>Email : notblue@gmail.com</p>
+        </div>
+    </section>
+</body>
+</html>
