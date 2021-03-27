@@ -1,7 +1,0 @@
-Main
-
-Search
-
-Button Add
-
-Add page
